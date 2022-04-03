@@ -1,1 +1,7 @@
-# cs260-creative-project-4
+# Creative Project 4
+
+### Created By:
+
+ - Isaac Smith
+ - Vivian Solgere
+
