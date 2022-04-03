@@ -2,8 +2,8 @@
   <div class="upload">
     <h1>The Upload Page!</h1>
     <div class="heading">
-      <div class="circle">1</div>
-      <h2>Add an Item</h2>
+      <!-- <div class="circle">1</div> -->
+      <h2>Add Your Own Word!</h2>
     </div>
     <div class="add">
       <div class="form">
@@ -20,8 +20,8 @@
       </div>
     </div>
     <div class="heading">
-      <div class="circle">2</div>
-      <h2>Edit/Delete an Item</h2>
+      <!-- <div class="circle">2</div> -->
+      <h2>Edit/Delete a Definition</h2>
     </div>
     <div class="edit">
       <div class="form">
