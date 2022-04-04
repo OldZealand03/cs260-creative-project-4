@@ -9,6 +9,7 @@
         <button @click="callAPI">Go</button>
       </div>
     </div>
+    <Definition />
     <p>
       This is where we should display the definition of the word and some boxes to save it to the personal dictionary
     </p>
@@ -24,9 +25,11 @@
 </style>
 
 <script>
+import Definition from '../components/Definition.vue';
 // import axios from "axios";
 
 export default {
+  components: { Definition },
   name: "Search",
   data() {
     return {
@@ -37,6 +40,7 @@ export default {
   methods: {
     callAPI() {
       let userInput = this.searchText;
+    //   userInput = "hello"
       let url = "https://api.dictionaryapi.dev/api/v2/entries/en/";
       let call = url + userInput;
 
