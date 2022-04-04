@@ -1,6 +1,12 @@
 <template>
     <div class="wrapper">
-        <div class="definition">
+        <div class="definition-box">
+            <div class="word">
+
+            </div>
+            <div class="definition"> 
+
+            </div>
             <div class="button">
                 <button @click="addToSaved(def)">Save to Personal</button>
             </div>
@@ -9,6 +15,8 @@
 </template>
 
 <script>
+
+// This component displays the definition box. We need a way to pass the data into the vue
 
 export default {
     name: "Definition",
@@ -26,9 +34,8 @@ export default {
 
 <style scoped>
 
-.definition {
+.definition-box {
     display: flex;
 }
-
 
 </style>

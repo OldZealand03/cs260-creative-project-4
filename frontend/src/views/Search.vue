@@ -51,7 +51,8 @@ export default {
           return response.json();
         })
         .then(function (json) {
-          console.log(json);
+            console.log("Passing Data")
+            console.log(json)
         });
     },
   },
