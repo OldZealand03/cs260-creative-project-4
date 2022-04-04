@@ -2,7 +2,7 @@
     <div class="wrapper">
         <div class="definition-box">
             <div class="word">
-
+                {{obj.word}}
             </div>
             <div class="definition"> 
 
@@ -18,6 +18,9 @@
 
 export default {
     name: "Definition",
+    props: {
+        obj: Object,
+    },
     data() {
 
     },

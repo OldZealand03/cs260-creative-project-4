@@ -10,9 +10,9 @@
       </div>
     </div>
     <div class="definition-result">
-        <Definition />
+        <Definition :obj="obj" />
         <div class="button">
-            <button @click="addToSaved(def)">Save to Personal</button>
+            <button @click="addToSaved(def)">Save</button>
         </div>
     </div>
   </div>
@@ -36,16 +36,21 @@ export default {
   data() {
     return {
       searchText: "",
-
+      object: {},
     };
   },
-  computed: {},
+  computed: {
+      obj() {
+          return this.object
+      }
+  },
   methods: {
     callAPI() {
       let userInput = this.searchText;
     //   userInput = "hello"
       let url = "https://api.dictionaryapi.dev/api/v2/entries/en/";
       let call = url + userInput;
+      let self = this;
 
       console.log(call);
 
@@ -55,13 +60,13 @@ export default {
         })
         .then(function (json) {
             console.log("Passing Data")
-            console.log(json)
-            // Pass data to the Definition Vue
+            self.object = json[0];
+            console.log(self.object);
         });
     },
     addToSaved(def) {
         console.log(def);
-        // Database stuff
+        // Save to database
     }
   },
 };
