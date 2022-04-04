@@ -9,10 +9,12 @@
         <button @click="callAPI">Go</button>
       </div>
     </div>
-    <Definition />
-    <p>
-      This is where we should display the definition of the word and some boxes to save it to the personal dictionary
-    </p>
+    <div class="definition-result">
+        <Definition />
+        <div class="button">
+            <button @click="addToSaved(def)">Save to Personal</button>
+        </div>
+    </div>
   </div>
 </template>
 
@@ -34,6 +36,7 @@ export default {
   data() {
     return {
       searchText: "",
+
     };
   },
   computed: {},
@@ -53,8 +56,13 @@ export default {
         .then(function (json) {
             console.log("Passing Data")
             console.log(json)
+            // Pass data to the Definition Vue
         });
     },
+    addToSaved(def) {
+        console.log(def);
+        // Database stuff
+    }
   },
 };
 </script>

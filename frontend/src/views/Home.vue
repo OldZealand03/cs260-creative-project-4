@@ -1,23 +1,25 @@
 <template>
 <div class="home">
-  <p>I started by coping Lab4. There is a lot of code we will have to configure here. <br>
-      This is the page where we will display the user's personal dictionary</p>
-  <section class="image-gallery">
-    <div class="image" v-for="item in items" :key="item.id">
-      <h2>{{item.title}}</h2>
-      <img :src="item.path" />
-      <p>{{item.description}}</p>
+  <h1>Your Personal Dictionary</h1>
+
+  <!-- Populate the Screen With All the Definitions in the User's Databse -->
+  <section class="definition-gallery">
+    <div class="def" v-for="item in items" :key="item.id">
+      <Definition />
+      <br>
+        <!-- The Data from the database is passed in -->
     </div>
   </section>
 </div>
 </template>
 
 <script>
-// @ is an alias to /src
 import axios from 'axios';
+import Definition from "../components/Definition.vue"
 
 export default {
   name: 'Home',
+  components: { Definition },
   data() {
   return {
     items: [],
@@ -54,19 +56,6 @@ export default {
   box-sizing: inherit;
 }
 
-.image-gallery {
-  column-gap: 1.5em;
-}
-
-.image {
-  margin: 0 0 1.5em;
-  display: inline-block;
-  width: 100%;
-}
-
-.image img {
-  width: 100%;
-}
 
 /* Masonry on large screens */
 @media only screen and (min-width: 1024px) {

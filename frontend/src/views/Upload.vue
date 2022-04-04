@@ -2,16 +2,15 @@
   <div class="upload">
     <h1>The Upload Page!</h1>
     <div class="heading">
-      <!-- <div class="circle">1</div> -->
       <h2>Add Your Own Word!</h2>
     </div>
     <div class="add">
       <div class="form">
-        <input v-model="title" placeholder="Title" />
+        <input v-model="title" placeholder="Word" />
         <input v-model="description" placeholder="Definition">
         <p></p>
-        <input type="file" name="photo" @change="fileChanged" />
-        <button @click="upload">Upload</button>
+        <button @click="upload">Save</button>
+        <!-- This saved button will pass the word and definition to the database as well -->
       </div>
       <div class="upload" v-if="addItem">
         <h2>{{ addItem.title }}</h2>
@@ -20,7 +19,6 @@
       </div>
     </div>
     <div class="heading">
-      <!-- <div class="circle">2</div> -->
       <h2>Edit/Delete a Definition</h2>
     </div>
     <div class="edit">

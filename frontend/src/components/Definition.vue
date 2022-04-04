@@ -7,9 +7,7 @@
             <div class="definition"> 
 
             </div>
-            <div class="button">
-                <button @click="addToSaved(def)">Save to Personal</button>
-            </div>
+
         </div>
     </div>
 </template>
@@ -23,12 +21,6 @@ export default {
     data() {
 
     },
-    methods: {
-        addToSaved(def) {
-            console.log(def);
-        }
-    }
-
 }
 </script>
 

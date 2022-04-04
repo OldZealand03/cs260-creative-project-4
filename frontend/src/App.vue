@@ -2,7 +2,7 @@
 <div id="app">
   <div class="header">
     <div class="title">
-      <h1>The EPIC Dictionary</h1>
+      <h1>The All-Dictionary</h1>
     </div>
   </div>
   <hr>
