@@ -6,16 +6,15 @@
     </div>
     <div class="add">
       <div class="form">
-        <input v-model="title" placeholder="Word" />
-        <input v-model="description" placeholder="Definition">
+        <input v-model="word" placeholder="Word" />
+        <input v-model="definition" placeholder="Definition" />
         <p></p>
         <button @click="upload">Save</button>
         <!-- This saved button will pass the word and definition to the database as well -->
       </div>
       <div class="upload" v-if="addItem">
-        <h2>{{ addItem.title }}</h2>
-        <img :src="addItem.path" />
-        <textarea v-model="description"></textarea>
+        <h2>{{ addItem.word }}</h2>
+        <textarea v-model="definition"></textarea>
       </div>
     </div>
     <div class="heading">
@@ -37,9 +36,8 @@
       </div>
       <div class="upload" v-if="findItem">
         <input v-model="findItem.title" />
-        <input v-model="findItem.description">
+        <input v-model="findItem.definition" />
         <p></p>
-        <img :src="findItem.path" />
       </div>
       <div class="actions" v-if="findItem">
         <button @click="deleteItem(findItem)">Delete</button>
@@ -55,23 +53,25 @@ export default {
   name: "Upload",
   data() {
     return {
-      title: "",
+      word: "",
       file: null,
       addItem: null,
       items: [],
       findTitle: "",
       findItem: null,
-      description: "",
+      definition: "",
     };
   },
   computed: {
     suggestions() {
-      let items = this.items.filter(item => item.title.toLowerCase().startsWith(this.findTitle.toLowerCase()));
-      return items.sort((a, b) => a.title > b.title);
-    }
+      let items = this.items.filter((item) =>
+        item.word.toLowerCase().startsWith(this.findTitle.toLowerCase())
+      );
+      return items.sort((a, b) => a.word > b.word);
+    },
   },
   created() {
-      this.getItems();
+    this.getItems();
   },
   methods: {
     fileChanged(event) {
@@ -104,8 +104,8 @@ export default {
     async editItem(item) {
       try {
         await axios.put("/api/items/" + item._id, {
-          title: this.findItem.title,
-          description: this.findItem.description,
+          word: this.findItem.word,
+          definition: this.findItem.definition,
         });
         this.findItem = null;
         this.getItems();
@@ -117,8 +117,8 @@ export default {
     async upload() {
       try {
         let r = await axios.post("/api/items", {
-          word: this.title,
-          definition: this.description,
+          word: this.word,
+          definition: this.definition,
         });
         console.log(r);
       } catch (error) {
@@ -177,10 +177,6 @@ button {
 /* Uploaded images */
 .upload h2 {
   margin: 0px;
-}
-
-.upload img {
-  max-width: 300px;
 }
 
 /* Suggestions */
