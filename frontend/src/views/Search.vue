@@ -10,10 +10,10 @@
       </div>
     </div>
     <div class="definition-result">
-        <Definition :obj="obj" />
-        <div class="button">
-            <button @click="addToSaved()">Save</button>
-        </div>
+      <Definition :obj="obj" />
+      <div class="button">
+        <button @click="addToSaved()">Save</button>
+      </div>
     </div>
   </div>
 </template>
@@ -27,7 +27,7 @@
 </style>
 
 <script>
-import Definition from '../components/Definition.vue';
+import Definition from "../components/Definition.vue";
 import axios from "axios";
 
 export default {
@@ -42,14 +42,14 @@ export default {
     };
   },
   computed: {
-      obj() {
-        return this.object
-      },
+    obj() {
+      return this.object;
+    },
   },
   methods: {
     callAPI() {
       let userInput = this.searchText;
-    //   userInput = "hello"
+      //   userInput = "hello"
       let url = "https://api.dictionaryapi.dev/api/v2/entries/en/";
       let call = url + userInput;
       let self = this;
@@ -61,11 +61,11 @@ export default {
           return response.json();
         })
         .then(function (json) {
-            console.log("Passing Data")
-            self.object = json[0];
-            self.savedWord = json[0].word
-            self.savedDefinition = json[0].meanings[0].definitions[0].definition
-            console.log(self.object);
+          console.log("Passing Data");
+          self.object = json[0];
+          self.savedWord = json[0].word;
+          self.savedDefinition = json[0].meanings[0].definitions[0].definition;
+          console.log(self.object);
         });
     },
     async addToSaved() {
@@ -75,11 +75,11 @@ export default {
           word: this.savedWord,
           definition: this.savedDefinition,
         });
-        console.log(r)
+        console.log(r);
       } catch (error) {
         console.log(error);
       }
-    }
+    },
   },
 };
 </script>

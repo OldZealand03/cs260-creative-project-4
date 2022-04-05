@@ -49,6 +49,86 @@
   </div>
 </template>
 
+<script>
+import axios from "axios";
+export default {
+  name: "Upload",
+  data() {
+    return {
+      title: "",
+      file: null,
+      addItem: null,
+      items: [],
+      findTitle: "",
+      findItem: null,
+      description: "",
+    };
+  },
+  computed: {
+    suggestions() {
+      let items = this.items.filter(item => item.title.toLowerCase().startsWith(this.findTitle.toLowerCase()));
+      return items.sort((a, b) => a.title > b.title);
+    }
+  },
+  created() {
+      this.getItems();
+  },
+  methods: {
+    fileChanged(event) {
+      this.file = event.target.files[0];
+    },
+    async deleteItem(item) {
+      try {
+        await axios.delete("/api/items/" + item._id);
+        this.findItem = null;
+        this.getItems();
+        return true;
+      } catch (error) {
+        console.log(error);
+      }
+    },
+    selectItem(item) {
+      this.findTitle = "";
+      this.findItem = item;
+      this.findDescription = "";
+    },
+    async getItems() {
+      try {
+        let response = await axios.get("/api/items");
+        this.items = response.data;
+        return true;
+      } catch (error) {
+        console.log(error);
+      }
+    },
+    async editItem(item) {
+      try {
+        await axios.put("/api/items/" + item._id, {
+          title: this.findItem.title,
+          description: this.findItem.description,
+        });
+        this.findItem = null;
+        this.getItems();
+        return true;
+      } catch (error) {
+        console.log(error);
+      }
+    },
+    async upload() {
+      try {
+        let r = await axios.post("/api/items", {
+          word: this.title,
+          definition: this.description,
+        });
+        console.log(r);
+      } catch (error) {
+        console.log(error);
+      }
+    },
+  },
+};
+</script>
+
 <style scoped>
 .image h2 {
   font-style: italic;
@@ -118,83 +198,3 @@ button {
   color: #fff;
 }
 </style>
-
-<script>
-import axios from "axios";
-export default {
-  name: "Upload",
-  data() {
-    return {
-      title: "",
-      file: null,
-      addItem: null,
-      items: [],
-      findTitle: "",
-      findItem: null,
-      description: "",
-    };
-  },
-  computed: {
-    suggestions() {
-      let items = this.items.filter(item => item.title.toLowerCase().startsWith(this.findTitle.toLowerCase()));
-      return items.sort((a, b) => a.title > b.title);
-    }
-  },
-  created() {
-      this.getItems();
-  },
-  methods: {
-    fileChanged(event) {
-      this.file = event.target.files[0];
-    },
-    async deleteItem(item) {
-      try {
-        await axios.delete("/api/items/" + item._id);
-        this.findItem = null;
-        this.getItems();
-        return true;
-      } catch (error) {
-        console.log(error);
-      }
-    },
-    selectItem(item) {
-      this.findTitle = "";
-      this.findItem = item;
-      this.findDescription = "";
-    },
-    async getItems() {
-      try {
-        let response = await axios.get("/api/items");
-        this.items = response.data;
-        return true;
-      } catch (error) {
-        console.log(error);
-      }
-    },
-    async editItem(item) {
-      try {
-        await axios.put("/api/items/" + item._id, {
-          title: this.findItem.title,
-          description: this.findItem.description,
-        });
-        this.findItem = null;
-        this.getItems();
-        return true;
-      } catch (error) {
-        console.log(error);
-      }
-    },
-    async upload() {
-      try {
-        let r = await axios.post("/api/items", {
-          word: this.word,
-          definition: this.definition,
-        });
-        console.log(r);
-      } catch (error) {
-        console.log(error);
-      }
-    },
-  },
-};
-</script>
