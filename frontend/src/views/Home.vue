@@ -5,9 +5,11 @@
   <!-- Populate the Screen With All the Definitions in the User's Databse -->
   <section class="definition-gallery">
     <div class="def" v-for="item in items" :key="item.id">
-      <Definition />
+      <p>
+        {{item.word}}
+        {{item.definition}}
+      </p>
       <br>
-        <!-- The Data from the database is passed in -->
     </div>
   </section>
 </div>
@@ -15,18 +17,21 @@
 
 <script>
 import axios from 'axios';
-import Definition from "../components/Definition.vue"
+// import Definition from "../components/Definition.vue"
 
 export default {
   name: 'Home',
-  components: { Definition },
+  // components: { Definition },
   data() {
-  return {
-    items: [],
-   }
+    return {
+      items: [],
+    }
   },
   created() {
     this.getItems();
+  },
+  computed: {
+
   },
   methods: {
   async getItems() {

@@ -186,15 +186,11 @@ export default {
     },
     async upload() {
       try {
-        const formData = new FormData();
-        formData.append("photo", this.file, this.file.name);
-        let r1 = await axios.post("/api/photos", formData);
-        let r2 = await axios.post("/api/items", {
-          title: this.title,
-          path: r1.data.path,
-          description: this.description,
+        let r = await axios.post("/api/items", {
+          word: this.word,
+          definition: this.definition,
         });
-        this.addItem = r2.data;
+        console.log(r);
       } catch (error) {
         console.log(error);
       }

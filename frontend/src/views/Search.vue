@@ -43,7 +43,6 @@ export default {
   },
   computed: {
       obj() {
-
         return this.object
       },
   },
