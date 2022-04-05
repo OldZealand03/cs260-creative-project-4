@@ -12,7 +12,7 @@
     <div class="definition-result">
         <Definition :obj="obj" />
         <div class="button">
-            <button @click="addToSaved(def)">Save</button>
+            <button @click="addToSaved()">Save</button>
         </div>
     </div>
   </div>
@@ -28,7 +28,7 @@
 
 <script>
 import Definition from '../components/Definition.vue';
-// import axios from "axios";
+import axios from "axios";
 
 export default {
   components: { Definition },
@@ -37,12 +37,15 @@ export default {
     return {
       searchText: "",
       object: {},
+      savedWord: "",
+      savedDefinition: "",
     };
   },
   computed: {
       obj() {
-          return this.object
-      }
+
+        return this.object
+      },
   },
   methods: {
     callAPI() {
@@ -61,12 +64,22 @@ export default {
         .then(function (json) {
             console.log("Passing Data")
             self.object = json[0];
+            self.savedWord = json[0].word
+            self.savedDefinition = json[0].meanings[0].definitions[0].definition
             console.log(self.object);
         });
     },
-    addToSaved(def) {
-        console.log(def);
-        // Save to database
+    async addToSaved() {
+      console.log();
+      try {
+        let r = await axios.post("/api/items", {
+          word: this.savedWord,
+          definition: this.savedDefinition,
+        });
+        console.log(r)
+      } catch (error) {
+        console.log(error);
+      }
     }
   },
 };
