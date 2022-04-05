@@ -23,14 +23,10 @@ const upload = multer({
   }
 });
 
-// Create a scheme for items in the dictionary: a title and a path to an image.
+// Create a scheme for items in the dictionary: a word and a definition.
 const itemSchema = new mongoose.Schema({
   word: String,
   definition: String,
-
-  // title: String,
-  // path: String,
-  // description: String,
 });
 
 // Create a model for items in the dictionary.

@@ -10,9 +10,8 @@
         <input v-model="definition" placeholder="Definition" />
         <p></p>
         <button @click="upload">Save</button>
-        <!-- This saved button will pass the word and definition to the database as well -->
       </div>
-      <div class="upload" v-if="addItem">
+      <div class="uploads" v-if="addItem">
         <h2>{{ addItem.word }}</h2>
         <textarea v-model="definition"></textarea>
       </div>
@@ -30,12 +29,12 @@
             :key="s.id"
             @click="selectItem(s)"
           >
-            {{ s.title }}
+            {{ s.word }}
           </div>
         </div>
       </div>
       <div class="upload" v-if="findItem">
-        <input v-model="findItem.title" />
+        <input v-model="findItem.word" />
         <input v-model="findItem.definition" />
         <p></p>
       </div>
@@ -54,7 +53,7 @@ export default {
   data() {
     return {
       word: "",
-      file: null,
+      // file: null,
       addItem: null,
       items: [],
       findTitle: "",
@@ -74,9 +73,9 @@ export default {
     this.getItems();
   },
   methods: {
-    fileChanged(event) {
-      this.file = event.target.files[0];
-    },
+    // fileChanged(event) {
+    //   this.file = event.target.files[0];
+    // }
     async deleteItem(item) {
       try {
         await axios.delete("/api/items/" + item._id);
