@@ -1,15 +1,16 @@
 <template>
 <div class="home">
   <h1>Your Personal Dictionary</h1>
-
-  <!-- Populate the Screen With All the Definitions in the User's Databse -->
+  <br>
   <section class="definition-gallery">
+    <p> Kanye West .. (definition) no you can't get rid of this one </p>
     <div class="def" v-for="item in items" :key="item.id">
       <p>
         {{item.word}}
         {{item.definition}}
+        <!-- {{item.date}} -->
+        <!-- I wonder if we should add a third factor like a date -->
       </p>
-      <br>
     </div>
   </section>
 </div>
@@ -17,11 +18,9 @@
 
 <script>
 import axios from 'axios';
-// import Definition from "../components/Definition.vue"
 
 export default {
   name: 'Home',
-  // components: { Definition },
   data() {
     return {
       items: [],
@@ -43,7 +42,7 @@ export default {
       console.log(error);
     }
   },
-  
+
   }
 
 }
