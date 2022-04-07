@@ -1,17 +1,26 @@
 <template>
 <div class="home">
   <h1>Your Personal Dictionary</h1>
-  <br>
+  
   <section class="definition-gallery">
-    
-    <p> <strong>Kanye West</strong> : A sensei of motivation</p>
-    <div class="def" v-for="item in items" :key="item.id">
-      <p>
-        <strong>{{item.word}}</strong> : {{item.definition}}
-        <!-- {{item.date}} -->
-        <!-- I wonder if we should add a third factor like a date -->
-      </p>
+
+    <div v-on:click="isShow = !isShow" class="control">
+    Want to study your words? click here to toggle (show/hide) the definition!
     </div>
+    <br>
+    <br>
+
+      <div class="word"><strong>Kanye West</strong></div>
+      <div v-show="isShow" class ="definition"> A Sensei of inspiration</div>
+      <br>
+
+    <div class="def" v-for="item in items" :key="item.id">
+      <div class="word"><strong>{{item.word}}</strong></div>
+      <div v-show="isShow" class ="definition"> {{item.definition}}</div>
+      <br>
+    </div>
+    
+
   </section>
 </div>
 </template>
@@ -24,6 +33,7 @@ export default {
   data() {
     return {
       items: [],
+      isShow: true
     }
   },
   created() {
@@ -53,10 +63,30 @@ export default {
   font-style: italic;
 }
 
+h1 {
+  font-size: 25px;
+}
+
+.word {
+  font-size: 23px;
+}
+
+.definition {
+  font-size: 20px;
+}
+
+.control {
+  color: rebeccapurple;
+  font-size: 18px;
+}
+
 h3 {
   font-weight:bold;
 }
 
+p {
+  font-size: 20px;
+}
 /* Masonry */
 *,
 *:before,

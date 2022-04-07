@@ -39,6 +39,7 @@ export default {
       object: {},
       savedWord: "",
       savedDefinition: "",
+      savedTime: "",
     };
   },
   computed: {
@@ -66,7 +67,17 @@ export default {
           self.savedWord = json[0].word;
           self.savedDefinition = json[0].meanings[0].definitions[0].definition;
           console.log(self.object);
+          self.savedTime = self.getTime();
         });
+    },
+    getTime()
+    {
+      let current = new Date();
+      let cDate = current.getDate() + '-' + (current.getMonth() + 1) + '-' + current.getFullYear();
+      let cTime = current.getHours() + ":" + current.getMinutes();
+      let dateTime = cDate + '   at   ' + cTime;
+      console.log(dateTime);
+      return dateTime;
     },
     async addToSaved() {
       console.log();
@@ -74,6 +85,7 @@ export default {
         let r = await axios.post("/api/items", {
           word: this.savedWord,
           definition: this.savedDefinition,
+          addTime: this.savedTime,
         });
         console.log(r);
       } catch (error) {
