@@ -3,11 +3,11 @@
   <h1>Your Personal Dictionary</h1>
   <br>
   <section class="definition-gallery">
-    <p> Kanye West .. (definition) no you can't get rid of this one </p>
+    
+    <p> <strong>Kanye West</strong> : A sensei of motivation</p>
     <div class="def" v-for="item in items" :key="item.id">
       <p>
-        {{item.word}}
-        {{item.definition}}
+        <strong>{{item.word}}</strong> : {{item.definition}}
         <!-- {{item.date}} -->
         <!-- I wonder if we should add a third factor like a date -->
       </p>
@@ -51,6 +51,10 @@ export default {
 <style scoped>
 .image h2 {
   font-style: italic;
+}
+
+h3 {
+  font-weight:bold;
 }
 
 /* Masonry */
