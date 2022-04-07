@@ -41,10 +41,10 @@ app.post('/api/items', async (req, res) => {
   });
   try {
     await item.save();
-    console.log(item);
+    // console.log(item);
     res.send(item);
   } catch (error) {
-    console.log(error);
+    // console.log(error);
     res.sendStatus(500);
   }
 });
@@ -55,26 +55,26 @@ app.get('/api/items', async (req, res) => {
     let items = await Item.find();
     res.send(items);
   } catch (error) {
-    console.log(error);
+    // console.log(error);
     res.sendStatus(500);
   }
 });
 
 app.delete('/api/items/:id', async (req, res) => {
-  console.log('Delete ' , req.params.id);
+  // console.log('Delete ' , req.params.id);
   try {
     await Item.deleteOne({
       _id: req.params.id
     });
     res.sendStatus(200);
   } catch (error) {
-    console.log(error);
+    // console.log(error);
     res.sendStatus(500);
   }
 });
 
 app.put('/api/items/:id', async (req, res) => {
-  console.log('Edit ' , req.params.id);
+  // console.log('Edit ' , req.params.id);
   let item = await Item.findOne({
     _id: req.params.id
   });
@@ -84,7 +84,7 @@ app.put('/api/items/:id', async (req, res) => {
     await item.save();
     res.send(item);
   } catch (error) {
-    console.log(error);
+    // console.log(error);
     res.sendStatus(500);
   }
 });

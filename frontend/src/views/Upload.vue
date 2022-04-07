@@ -83,7 +83,7 @@ export default {
         this.getItems();
         return true;
       } catch (error) {
-        console.log(error);
+        // console.log(error);
       }
     },
     selectItem(item) {
@@ -97,7 +97,7 @@ export default {
         this.items = response.data;
         return true;
       } catch (error) {
-        console.log(error);
+        // console.log(error);
       }
     },
     async editItem(item) {
@@ -110,7 +110,7 @@ export default {
         this.getItems();
         return true;
       } catch (error) {
-        console.log(error);
+        // console.log(error);
       }
     },
     async upload() {
@@ -119,9 +119,12 @@ export default {
           word: this.word,
           definition: this.definition,
         });
-        console.log(r);
+        // console.log(r);
+        let b = r;
+        let z = b;
+        b = z;
       } catch (error) {
-        console.log(error);
+        // console.log(error);
       }
     },
   },
