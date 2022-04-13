@@ -1,11 +1,11 @@
 <template>
 <div class="home">
-  <h1>Your Personal Dictionary</h1>
+  <h1>Your Personal Dictionary / Study Tool</h1>
   
   <section class="definition-gallery">
 
     <div v-on:click="isShow = !isShow" class="control">
-    Want to study your words? click here to toggle (show/hide) the definition!
+    Want to study your words? Click here to toggle (show/hide) the definition!
     </div>
     <br>
     <br>
@@ -49,7 +49,7 @@ export default {
       this.items = response.data;
       return true;
     } catch (error) {
-      console.log(error);
+      // console.log(error);
     }
   },
 

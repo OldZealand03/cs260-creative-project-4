@@ -55,18 +55,18 @@ export default {
       let call = url + userInput;
       let self = this;
 
-      console.log(call);
+      // console.log(call);
 
       fetch(call)
         .then(function (response) {
           return response.json();
         })
         .then(function (json) {
-          console.log("Passing Data");
+          // console.log("Passing Data");
           self.object = json[0];
           self.savedWord = json[0].word;
           self.savedDefinition = json[0].meanings[0].definitions[0].definition;
-          console.log(self.object);
+          // console.log(self.object);
           self.savedTime = self.getTime();
         });
     },
@@ -76,20 +76,24 @@ export default {
       let cDate = current.getDate() + '-' + (current.getMonth() + 1) + '-' + current.getFullYear();
       let cTime = current.getHours() + ":" + current.getMinutes();
       let dateTime = cDate + '   at   ' + cTime;
-      console.log(dateTime);
+      // console.log(dateTime);
       return dateTime;
     },
     async addToSaved() {
-      console.log();
+      // console.log();
       try {
         let r = await axios.post("/api/items", {
           word: this.savedWord,
           definition: this.savedDefinition,
           addTime: this.savedTime,
+
         });
-        console.log(r);
+        // console.log(r);
+        let a = r;
+        let y = a;
+        a = y;
       } catch (error) {
-        console.log(error);
+        // console.log(error);
       }
     },
   },
